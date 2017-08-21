@@ -3,16 +3,30 @@ package com.demo;
 public class Employees {
 
 	int eId;
+	String Ename;
+	int DeptId;
+	String Job;	
+	
+	public Employees() {
+		
+	}
+	
+	
+	public Employees(int eId, String ename, int deptId, String job) {
+		
+		this.eId = eId;
+		Ename = ename;
+		DeptId = deptId;
+		Job = job;
+	}
+
+
 	public int geteId() {
 		return eId;
 	}
 	public void seteId(int eId) {
 		this.eId = eId;
-	}
-	String Ename;
-	int DeptId;
-	String Job;
-	
+	}	
 	public String getEname() {
 		return Ename;
 	}
