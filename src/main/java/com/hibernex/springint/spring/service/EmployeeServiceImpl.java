@@ -39,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return userDao.getAllEmployees();
 	}
 
+	@Transactional(readOnly=true)
 	public Double getMaxEmployeeSalary() {
 		
 		return userDao.getMaxEmployeeSalary();
@@ -48,6 +49,25 @@ public class EmployeeServiceImpl implements EmployeeService{
 		
 		return userDao.getSalaryById(id);
 	}
+	
+	@Transactional(readOnly=true)
+	public Integer getMaxEmpId() {
+		
+		return userDao.getMaxEmpId();
+	}
+
+	public Employee getEmployeeById(int id) {
+		
+		return userDao.getEmployeeById(id);
+	}
+
+	@Transactional
+	public int updateEmployee(Employee employee) {
+		 return userDao.updateEmployee(employee);
+		
+	}
+
+	
 
 	
 }

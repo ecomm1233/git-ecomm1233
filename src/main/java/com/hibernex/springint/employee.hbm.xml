@@ -4,12 +4,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.hibernex.springint.Employee" table="Employees">
+	<class name="com.hibernex.springint.spring.entity.Employee" table="Employees">
 		<id name="id">
 		<generator class="assigned">
 		</generator>
 		</id>
 		<property name="name"></property>
 		<property name="salary"></property>
+		<property name="designation"></property>
 	</class>
 </hibernate-mapping>

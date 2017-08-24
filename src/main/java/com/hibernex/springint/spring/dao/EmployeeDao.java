@@ -19,5 +19,13 @@ public interface EmployeeDao {
 	public Double getMaxEmployeeSalary();
 	
 	public Employee getSalaryById(int id);
+
+	public Integer getMaxEmpId();
+
+	public Employee getEmployeeById(int id);
+
+	public int updateEmployee(Employee employee);
+	
+	
 		
 }

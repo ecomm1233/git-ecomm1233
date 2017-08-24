@@ -16,7 +16,7 @@ public class MainApp {
 		
 		EmployeeService empService=context.getBean(EmployeeService.class);
 		
-		//empService.saveEmployee(new Employee("Jyoti",25000));
+		empService.saveEmployee(new Employee("Kayra",35000,"mgr"));
 		
 		/*empService.saveEmployee(new Employee("Rupa",15000));
 		empService.saveEmployee(new Employee("Chanda",25000));
@@ -46,9 +46,11 @@ public class MainApp {
 		List<Employee> empList=empService.getAllEmployees();
 		
 		for(Employee emp:empList){
+			
 			System.out.println("Employee Id ="+emp.getId());
 			System.out.println("Name = "+emp.getName());
 			System.out.println("Salary = "+emp.getSalary());
+			System.out.println("Designation = "+emp.getDesignation());
 			System.out.println();
 		}
 		context.close();

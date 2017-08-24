@@ -18,4 +18,12 @@ public interface EmployeeService {
 	
 	//Method to return all employees
 	List<Employee> getAllEmployees();
+
+	Integer getMaxEmpId();
+
+	Employee getEmployeeById(int id);
+
+	int updateEmployee(Employee employee);
+	
+	
 }

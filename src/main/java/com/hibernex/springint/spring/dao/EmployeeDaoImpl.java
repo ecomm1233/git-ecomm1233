@@ -11,8 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.FlushMode;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +25,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
 		
 		//Method to save Employee
+		@Transactional
 		public void saveEmployee(Employee e){
-			
+			System.out.println(e);
 			em.persist(e);
-			
 		}
 		
 		
@@ -43,14 +41,14 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			
 		//Method to return all employees
 		public List<Employee> getAllEmployees(){
-			/*
+			
 			CriteriaQuery<Employee> query = em.getCriteriaBuilder().createQuery(Employee.class);
 			@SuppressWarnings("unused")
 			Root<Employee> root=query.from(Employee.class);
 			return em.createQuery(query).getResultList();
-			*/
-			TypedQuery<Employee> query = em.createNamedQuery("Employee.selectAll", Employee.class);
-			return query.getResultList();
+			
+			//TypedQuery<Employee> query = em.createNamedQuery("Employee.selectAll", Employee.class);
+			//return query.getResultList();
 		}
 
 		public int updateSalary(int id) {
@@ -81,4 +79,39 @@ public class EmployeeDaoImpl implements EmployeeDao{
 			TypedQuery<Employee> query = em.createQuery(q);
 			return  query.setParameter(p, id).getSingleResult();
 		}
+
+
+		public Integer getMaxEmpId() {
+			TypedQuery<Integer> query =  em.createQuery("Select MAX(id) from Employee",Integer.class);
+			
+			return query.getSingleResult();
+		}
+
+
+		public Employee getEmployeeById(int id) {
+			
+			CriteriaBuilder cb= em.getCriteriaBuilder();
+			CriteriaQuery<Employee> q = cb.createQuery(Employee.class);
+			Root<Employee> c= q.from(Employee.class);
+			ParameterExpression<Integer> p = cb.parameter(Integer.class);
+			q.select(c).where(cb.equal(c.get("id"), p));
+			
+			
+			TypedQuery<Employee> query = em.createQuery(q);
+			return  query.setParameter(p, id).getSingleResult();
+		}
+
+
+		public int updateEmployee(Employee employee) {
+			Query query = em.createQuery("Update Employee set name = :name, salary = :salary, designation = :designation where id = :id");
+			query.setParameter("name", employee.getName());
+			query.setParameter("salary", employee.getSalary());
+			query.setParameter("designation", employee.getDesignation());
+			query.setParameter("id", employee.getId());
+			int count = query.executeUpdate();
+			return count;
+			
+		}
+
+
 }

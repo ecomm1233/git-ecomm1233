@@ -32,6 +32,7 @@ com\demo\controllers\EmpController.class
 com\springex\A.class
 com\demo\Person.class
 com\hibernex\springint\spring\dao\EmployeeDao.class
+com\hibernex\springint\spring\EmpHibController.class
 com\springex\Address.class
 com\springex\EmployeeDao$3.class
 com\springex\FactoryTest.class
